@@ -53,28 +53,30 @@ function getKeys() {
 function keyEvent(evt, snake, keys) {
 	switch (evt.keyCode) {
 		case keys.up:
-			if (snake.speed.y !== -1) {
-				snake.speed.y = 1;
-				snake.speed.x = 0;
-			}
+			moveInYAxis(snake.speed, 1);
 			break;
 		case keys.down:
-			if (snake.speed.y !== 1) {
-				snake.speed.y = -1;
-				snake.speed.x = 0;
-			}
+			moveInYAxis(snake.speed, -1);
 			break;
 		case keys.left:
-			if (snake.speed.x !== 1) {
-				snake.speed.x = -1;
-				snake.speed.y = 0;
-			}
+			moveInXAxis(snake.speed, -1);
 			break;
 		case keys.right:
-			if (snake.speed.x !== -1) {
-				snake.speed.x = 1;
-				snake.speed.y = 0;
-			}
+			moveInXAxis(snake.speed, 1);
 			break;
+	}
+
+	function moveInYAxis(speed, direction) {
+		if (speed.y !== -direction) {
+			speed.y = direction;
+			speed.x = 0;
+		}
+	}
+
+	function moveInXAxis(speed, direction) {
+		if (speed.x !== -direction) {
+			speed.x = direction;
+			speed.y = 0;
+		}
 	}
 }
